@@ -19,7 +19,7 @@ The goal of this writeup is to show the detection methodology: how each stage le
 | Gateway (legitimate) | 192.168.10.1 | 02:aa:bb:cc:00:01 |
 | Attacker | 192.168.10.55 | 02:fe:fe:fe:55:55 |
 | Victim | 192.168.10.10 | 02:aa:bb:14:b6:8b |
-| Legitimate DNS | 8.8.8.8 | — |
+| Legitimate DNS (Google Public DNS) | 8.8.8.8 | — |
 
 ---
 
@@ -107,7 +107,7 @@ index=network_logs protocol=DNS type=response src_ip=8.8.8.8
 ```
 ![Legitimate DNS responses from 8.8.8.8](images/MITM-DNS-baseline.png)
 
-753 responses from `8.8.8.8`, all carrying the resolver's expected MAC. This is what normal resolution looks like, for comparison.
+`8.8.8.8` is Google Public DNS, acting here as the legitimate upstream resolver. 753 responses come from it, all carrying the resolver's expected MAC — this is what normal resolution looks like, for comparison.
 
 **The key evidence — responses from an unexpected source**
 ```spl
